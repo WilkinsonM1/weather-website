@@ -6,6 +6,9 @@ const summary = document.getElementById('summary')
 const temperature = document.getElementById('temperature')
 const place = document.getElementById('place')
 const rain = document.getElementById('rain-prob')
+// const d = new Date()
+// const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+// const dateDisplay = document.getElementById('date')
 
 
 cBtn.addEventListener('click', async ()=>{
@@ -13,8 +16,10 @@ cBtn.addEventListener('click', async ()=>{
     temperature.textContent =""
     let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
     let data = await response.json()
-    console.log(data.weatherData)
+    console.log(data.weatherData.time)
     
+   
+
     place.textContent = data.placeData
     summary.textContent =  data.weatherData.summary
     temperature.textContent =  `${Math.floor((data.weatherData.temperature-32)*(5/9))}°C`
@@ -28,8 +33,9 @@ fBtn.addEventListener('click', async ()=>{
     temperature.textContent =""
     let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
     let data = await response.json()
-    console.log(data.weatherData)
+  
     
+
     place.textContent = data.placeData
     summary.textContent =  data.weatherData.summary
     temperature.textContent =  `${Math.floor(data.weatherData.temperature)}°F`
@@ -44,8 +50,8 @@ window.addEventListener('keypress', async ()=>{
         temperature.textContent =""
         let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
         let data = await response.json()
-        console.log(data.placeData)
-        
+      
+       
         place.textContent = data.placeData
         summary.textContent =  data.weatherData.summary
         temperature.textContent =  `${Math.floor((data.weatherData.temperature-32)*(5/9))}°C`
@@ -58,8 +64,9 @@ window.addEventListener('keypress', async ()=>{
             temperature.textContent =""
             let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
             let data = await response.json()
-            console.log(data.placeData)
             
+            
+
             place.textContent = data.placeData
             summary.textContent =  data.weatherData.summary
             temperature.textContent =  `${Math.floor(data.weatherData.temperature)}°F`

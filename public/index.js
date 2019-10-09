@@ -14,7 +14,7 @@ const rain = document.getElementById('rain-prob')
 cBtn.addEventListener('click', async ()=>{
     summary.textContent = "loading..."
     temperature.textContent =""
-    let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
+    let response = await fetch(`/weather?location=${input.value}`)
     let data = await response.json()
     console.log(data.weatherData.time)
     
@@ -31,7 +31,7 @@ cBtn.addEventListener('click', async ()=>{
 fBtn.addEventListener('click', async ()=>{
     summary.textContent = "loading..."
     temperature.textContent =""
-    let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
+    let response = await fetch(`/weather?location=${input.value}`)
     let data = await response.json()
   
     
@@ -48,7 +48,7 @@ window.addEventListener('keypress', async ()=>{
     if(event.which == "13"){
         summary.textContent = "loading..."
         temperature.textContent =""
-        let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
+        let response = await fetch(`/weather?location=${input.value}`)
         let data = await response.json()
       
        
@@ -62,7 +62,7 @@ window.addEventListener('keypress', async ()=>{
         if(event.which == "32"){
             summary.textContent = "loading..."
             temperature.textContent =""
-            let response = await fetch(`http://localhost:3000/weather?location=${input.value}`)
+            let response = await fetch(`/weather?location=${input.value}`)
             let data = await response.json()
             
             

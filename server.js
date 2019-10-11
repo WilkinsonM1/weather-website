@@ -1,17 +1,31 @@
-const express = require('express')
-const path = require ('path')
-const {main} = require('./lib/app')
+// This is where we handle our server setup
+const express = require("express")
+const path = require("path")
+const hbs = require("express-handlebars")
+const bodyParser = require("body-parser")
 
-const app = express()
 const port = process.env.PORT || 3000
 
+const routes = require("./routes/index")
+
+const app = express()
+
 app.use(express.static(path.join(__dirname, "public")))
+app.use(bodyParser.urlencoded({ encoded: false }))
+app.use(bodyParser.json())
 
-app.get('/weather', async (req, res)=>{
-  let data = await main(req.query.location)
-  res.send(data)
-})
+app.engine(
+  ".hbs",
+  hbs({
+    defaultLayout: "layout",
+    extname: ".hbs"
+  })
+)
 
-app.listen(port, ()=> {
-    console.log('listening on port 3000')
+app.set("view engine", ".hbs")
+
+app.use("/", routes)
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`)
 })
